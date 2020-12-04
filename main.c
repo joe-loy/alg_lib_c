@@ -1,10 +1,13 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include <malloc.h>
+#include <string.h>
+
 
 // Comparison function declarations
 int int_cmp(void* e1, void* e2);
-int str_cmp(void* e1, void* e2);
-int dub_cmp(void* e1, void* e2);
+int char_cmp(void* e1, void* e2);
+int first_char_cmp(void* e1, void* e2);
+int flt_cmp(void* e1, void* e2);
 
 // Sorting function declarations
 void insertion_sort(void* arr, int size, void (*cmp_func)(void*, void*));
@@ -23,6 +26,25 @@ int main()
 /*
  *  Sorting algorithms
  */
+// Comparison Functions
+int flt_cmp(const void *e1, const void *e2) {
+    float e1_float = *(float *)e1;
+    float e2_float = *(float *)e2;
+    return (e1_float > e2_float) - (e1_float < e2_float);
+}
+
+int int_cmp(const void *e1, const void *e2) {
+    return *(const int *)e1 - *(const int *)e2;
+}
+
+int char_cmp(const void *e1, const void **e2) {
+    return *(const unsigned char *)e1 - *(const unsigned char *)*e2;
+}
+
+int first_char_cmp(const void *e1, const void **e2) {
+    return **(const char **)e1 - **(const char **)*e2;
+}
+
 
 // Insertion Sort
 
